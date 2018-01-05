@@ -1,43 +1,62 @@
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+const api = "http://message-list.appspot.com";
+var page_token;
+var first_load = "/messages";
+
+//loading JSON object based on the url, it loads the first object and changes the URL moving forward to new tokens
+function table(link){
+    $.getJSON(api + link, function(message_object){
+        console.log(message_object);
+        create_new_messages(message_object)
+    })
 }
 
-var main_section = document.getElementById("main_section");
+//creating individual messages based on JSON object 
+function create_new_messages(message_object){
+  page_token =  "/messages?pageToken=" + message_object.pageToken;
+  var count = message_object.count;
+  for(var i=0; i < count; i++) {
+    var profile_image_url = "http://message-list.appspot.com/" + message_object.messages[i].author.photoUrl;
+    var author_name = message_object.messages[i].author.name;
+    var author_content = message_object.messages[i].content;
+    var date_time = message_object.messages[i].updated;
+    var date = date_time.slice(0,10);
+    var time = date_time.slice(11,19);
+    var id = message_object.messages[i].id;
 
-function pageWithNewDivs (){
-  for (var i = 0; i < 9; i++) {
-    var newDiv = document.createElement("div");
-    newDiv.classList.add('newDiv');
-    newDiv.id = i;
-    newDiv.style.background = getRandomColor();
-    main_section.appendChild(newDiv);
-
-    newDiv.onclick = function () {
-
-      $(this).animate({
-        'padding': "0px",
-        'margin-left':'-200px',
-        'width':'0px',
-      }, 1200, function() { 
-        $(this).remove();      
-      });
-    };
+    $(`<div id = ${id} class = "per_message_div">`+
+      `<table>`+
+        `<tr>`+
+          `<td>`+
+            `<div class = "image_border">`+
+              `<img class = "profile_image" src= ${profile_image_url}>`+
+            `</div>`+
+          `</td>`+
+          `<td>`+
+            `<div class = "content_section">`+
+              `<p class = "author_name"> ${author_name}</p>`+
+              `<p class = "author_content">${author_content}</p>`+
+            `</div>`+
+          `</td>`+
+          `<td>`+
+            `<div class = "date_section">`+
+              `<p class = "date">${time}</p>`+
+            `</div>`+
+          `</td>`+
+        `</tr>`+
+      `</table>`+
+    `</div>`).appendTo($("#messages"));
   }
 }
 
+//Printing out the first load of messages 
+table(first_load);
 
+//On scroll we will change the token value and add new messages to the list
 window.onscroll = function(ev) {
     // console.log("window.innerHeight "+window.innerHeight)
     // console.log("window.scrollY "+ window.scrollY)
     // console.log("document.body.offsetHeight "+ document.body.offsetHeight)
 if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    pageWithNewDivs()
+    table(page_token);
     }
 };
-
-pageWithNewDivs()
