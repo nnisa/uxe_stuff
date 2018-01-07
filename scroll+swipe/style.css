@@ -17,7 +17,7 @@ nav{
     background-color: #6739b7;
     /* margin: 0px 0px 16px 0px; */
     box-shadow: 0px 3px 6px rgba(0,0,0,0.35);
-    position: absolute;
+    position: fixed;
     padding-left: 16px;
 }
 
@@ -98,3 +98,5 @@ p#nav_title{
 	font-family: "Roboto";
 	font-weight: 400;
 }
+
+
