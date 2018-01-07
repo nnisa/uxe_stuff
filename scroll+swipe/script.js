@@ -15,6 +15,7 @@ function create_new_messages(message_object){
   page_token =  "/messages?pageToken=" + message_object.pageToken;
   var count = message_object.count;
   for(var i=0; i < count; i++) {
+    //fetching all the important data required to create a message
     var profile_image_url = "http://message-list.appspot.com/" + message_object.messages[i].author.photoUrl;
     var author_name = message_object.messages[i].author.name;
     var author_content = message_object.messages[i].content;
@@ -22,29 +23,28 @@ function create_new_messages(message_object){
     var date = date_time.slice(0,10);
     var time = date_time.slice(11,19);
     var id = message_object.messages[i].id;
+    var messages_section = document.getElementById('messages')
 
-    $(`<div id = ${id} class = "per_message_div">`+
-      `<table>`+
-        `<tr>`+
-          `<td>`+
-            `<div class = "image_border">`+
-              `<img class = "profile_image" src= ${profile_image_url}>`+
-            `</div>`+
-          `</td>`+
-          `<td>`+
-            `<div class = "content_section">`+
-              `<p class = "author_name"> ${author_name}</p>`+
-              `<p class = "author_content">${author_content}</p>`+
-            `</div>`+
-          `</td>`+
-          `<td>`+
-            `<div class = "date_section">`+
-              `<p class = "date">${time}</p>`+
-            `</div>`+
-          `</td>`+
-        `</tr>`+
-      `</table>`+
-    `</div>`).appendTo($("#messages"));
+    // $(`<div id = ${id} class = "per_message_div">`+
+    //   `<table>`+
+    //     `<tr>`+
+    //       `<td>`+
+    //         `<div class = "image_border">`+
+    //           `<img class = "profile_image" src= ${profile_image_url}>`+
+    //         `</div>`+
+    //       `</td>`+
+    //       `<td>`+
+    //         `<div class = "content_section">`+
+    //           `<p class = "author_name"> ${author_name}</p>`+
+    //           `<div class = "date_section">`+
+    //             `<p class = "date">${time}</p>`+
+    //           `</div>`+
+    //         `</div>`+
+    //       `</td>`+
+    //     `</tr>`+
+    //     `<p class = "author_content">${author_content}</p>`+
+    //   `</table>`+
+    // `</div>`).appendTo($(messages_section));
   }
 }
 
