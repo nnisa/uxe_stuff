@@ -18,6 +18,8 @@ nav{
     box-shadow: 0px 3px 6px rgba(0,0,0,0.35);
     position: fixed;
     padding-left: 16px;
+    height: 64px;
+    z-index: 3;
 }
 
 div#navigation_bar {
@@ -31,13 +33,19 @@ div#navigation_bar {
     border-radius: 2px;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.27);
-    margin: 0 auto;
-    margin-bottom: 8px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 8px !important;
+    position: relative;
+    
 }
 
 
 div#messages {
-    padding-top: 25%;
+    padding-top: 23%;
+    overflow-y:auto;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .newDiv{
@@ -98,5 +106,33 @@ p#nav_title{
 	font-family: "Roboto";
 	font-weight: 400;
 }
+
+
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px){
+	div#messages {
+    	padding-top: 10%;
+	}
+}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px){
+	div#messages {
+    	padding-top: 13%;
+	}
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px){
+	div#messages {
+    	padding-top: 23%;
+	}
+
+}
+
+
+
+
 
 
