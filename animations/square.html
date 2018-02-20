@@ -6,37 +6,56 @@
 	div {
 	  width: 200px;
 	  height: 200px;
-	  margin: 0 auto;
-	  margin-top: 50px;
+	  margin: 50px auto;
 	  background-color: coral; 
-	  animation: square-to-circle 2s 1s infinite cubic-bezier(1.000, 0, 1.000, 1) alternate;; 
+	  animation: noshin 3s 1s infinite cubic-bezier(1.000, 0, 1.000, 1) alternate; 
 	}
 
-@keyframes square-to-circle {
+@keyframes noshin {
   0%  {
     border-radius:0 0 0 0;
     background:coral;
     transform:rotate(0deg);
   }
-  25%  {
+  10%  {
     border-radius:50% 0 0 0;
     background:darksalmon;
     transform:rotate(45deg);
   }
-  50%  {
+  20%  {
     border-radius:50% 50% 0 0;
     background:indianred;
     transform:rotate(90deg);
   }
-  75%  { 
+  30%  { 
     border-radius:50% 50% 50% 0;
     background:lightcoral;
     transform:rotate(135deg);
   }
-  100% {  
+  40% {  
     border-radius:50%;
     background:darksalmon;
     transform:rotate(180deg);
+  }
+  50%  {
+    border-radius: 50% 50% 50% 0;
+    background:coral;
+    transform:rotate(225deg);
+  }
+  60%  {
+    border-radius:50% 50% 0 0;
+    background:darksalmon;
+    transform:rotate(270deg);
+  }
+  70%  {
+    border-radius:50% 0 0 0;
+    background:indianred;
+    transform:rotate(315deg);
+  }
+  90% {  
+    border-radius:0 0 0 0;
+    background:darksalmon;
+    transform:rotate(360deg);
   }
 }
 
