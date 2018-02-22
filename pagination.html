@@ -59,7 +59,7 @@
       var begin = ((currentPage - 1) * numberPerPage);
       var end = begin + numberPerPage;
 
-      pageList = list.slice(begin, end);
+      pageList = list.slice(begin, end)
       drawList();
       check();
   }
@@ -79,7 +79,7 @@
   }
 
   function load() {
-    makeList();
+    makeLlist();
     loadList();
   }
     
